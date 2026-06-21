@@ -1,0 +1,33 @@
+/* Al-Ateer Real Estate Group — Typography tokens */
+:root {
+  /* ---- Families ---- */
+  --font-ar: "Helvetica Neue LT Arabic", "Tahoma", "Segoe UI", sans-serif;
+  --font-en: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  /* Email-safe fallback (no webfonts in mail clients) */
+  --font-ar-safe: "Tahoma", "Segoe UI", Arial, sans-serif;
+
+  /* ---- Weights ---- */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-bold:    700;
+
+  /* ---- Type scale (display / heading / body) ---- */
+  --fs-display: 48px;
+  --fs-h1:      36px;
+  --fs-h2:      28px;
+  --fs-h3:      22px;
+  --fs-lead:    18px;
+  --fs-body:    16px;
+  --fs-small:   14px;
+  --fs-caption: 12px;
+
+  /* ---- Line heights ---- */
+  --lh-tight: 1.15; /* @kind other */
+  --lh-snug:  1.35; /* @kind other */
+  --lh-body:  1.6;  /* @kind other */
+
+  /* ---- Letter spacing ---- */
+  --ls-tight:  -0.01em;
+  --ls-normal:  0;       /* @kind other */
+  --ls-wide:    0.08em;  /* uppercase Latin labels */
+}

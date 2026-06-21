@@ -1,0 +1,33 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Radius & Spacing scale" subtitle="4px base spacing · radii sm→lg · soft navy shadows" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;font-family:var(--font-en);background:#fff;color:var(--color-charcoal);padding:18px 24px;display:flex;gap:40px;align-items:center;}
+  .group{display:flex;gap:16px;align-items:flex-end;}
+  .sp{background:var(--color-lightblue);border-radius:3px;}
+  .col{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .lbl{font-size:11px;color:var(--color-slate);}
+  .r{width:60px;height:60px;background:var(--color-navy);}
+  h4{margin:0 0 14px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-gold);}
+</style></head>
+<body>
+  <div>
+    <h4>Spacing</h4>
+    <div class="group">
+      <div class="col"><div class="sp" style="width:8px;height:8px;"></div><span class="lbl">8</span></div>
+      <div class="col"><div class="sp" style="width:16px;height:16px;"></div><span class="lbl">16</span></div>
+      <div class="col"><div class="sp" style="width:24px;height:24px;"></div><span class="lbl">24</span></div>
+      <div class="col"><div class="sp" style="width:32px;height:32px;"></div><span class="lbl">32</span></div>
+      <div class="col"><div class="sp" style="width:48px;height:48px;"></div><span class="lbl">48</span></div>
+    </div>
+  </div>
+  <div>
+    <h4>Radius</h4>
+    <div class="group">
+      <div class="col"><div class="r" style="border-radius:var(--radius-sm);"></div><span class="lbl">4</span></div>
+      <div class="col"><div class="r" style="border-radius:var(--radius-md);"></div><span class="lbl">8</span></div>
+      <div class="col"><div class="r" style="border-radius:var(--radius-lg);"></div><span class="lbl">14</span></div>
+    </div>
+  </div>
+</body></html>

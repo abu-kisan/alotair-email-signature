@@ -1,0 +1,38 @@
+/* Al-Ateer Real Estate Group — Color tokens
+   Source: Colors_Digital.pdf / Colors_Print.pdf (brand swatches) */
+:root {
+  /* ---- Base palette ---- */
+  --color-navy:        #0B1D3B; /* PANTONE 2380 C — primary brand blue */
+  --color-navy-print:  #18203A; /* print variant of navy */
+  --color-gold:        #AC975F; /* PANTONE 4007 C — accent / luxury gold */
+  --color-offwhite:    #F3F2ED; /* PANTONE 663 C — page / surface */
+  --color-charcoal:    #373737; /* PANTONE 544 C — dark neutral / body text */
+  --color-lightblue:   #C0D9E5; /* PANTONE 4287 C — soft blue tint */
+  --color-slate:       #6F7A88; /* PANTONE 4128 C — mid grey / secondary text */
+  --color-white:       #FFFFFF;
+  --color-black:       #000000;
+
+  /* ---- Gold tints/shades (derived) ---- */
+  --color-gold-soft:   #C7B488;
+  --color-gold-deep:   #8E7A47;
+
+  /* ---- Navy tints/shades (derived) ---- */
+  --color-navy-700:    #16294b;
+  --color-navy-300:    #5a6a87;
+
+  /* ---- Semantic aliases ---- */
+  --surface-page:      var(--color-offwhite);
+  --surface-card:      var(--color-white);
+  --surface-inverse:   var(--color-navy);
+
+  --text-strong:       var(--color-navy);
+  --text-body:         var(--color-charcoal);
+  --text-muted:        var(--color-slate);
+  --text-on-dark:      var(--color-offwhite);
+  --text-accent:       var(--color-gold);
+
+  --border-subtle:     #E2E0D8;
+  --border-strong:     var(--color-slate);
+  --accent:            var(--color-gold);
+  --accent-cool:       var(--color-lightblue);
+}

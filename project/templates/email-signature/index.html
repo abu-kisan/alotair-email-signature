@@ -1,0 +1,303 @@
+<!-- @template name="توقيع بريد إلكتروني — العطير العقارية" description="القالب الرسمي المعتمد لتوقيع البريد (RTL عربي) — يوضّح الخط والألوان ومكان الشعار وأماكن المعلومات، جاهز للنسخ إلى Gmail و Outlook." -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>القالب المعتمد لتوقيع البريد — مجموعة العطير العقارية</title>
+<script src="./ds-base.js"></script>
+<style>
+  /* خط الهوية العربي — مضمّن محليًا حتى يظهر القالب صحيحًا حتى دون شبكة.
+     (ملاحظة: عملاء البريد يجرّدون الخطوط المخصّصة، لذا Tahoma يبقى احتياطيًا آمنًا.) */
+  @font-face { font-family:"Helvetica Neue LT Arabic"; src:url("../../assets/fonts/HelveticaNeueLTArabic-Light.ttf") format("truetype"); font-weight:300; font-style:normal; font-display:swap; }
+  @font-face { font-family:"Helvetica Neue LT Arabic"; src:url("../../assets/fonts/HelveticaNeueLTArabic-Regular.ttf") format("truetype"); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:"Helvetica Neue LT Arabic"; src:url("../../assets/fonts/HelveticaNeueLTArabic-Bold.ttf") format("truetype"); font-weight:700; font-style:normal; font-display:swap; }
+
+  :root {
+    --ar: "Helvetica Neue LT Arabic", Tahoma, "Segoe UI", sans-serif;
+    --lat: "Roboto", Arial, "Helvetica Neue", sans-serif;
+    --navy:#0B1D3B; --gold:#AC975F; --off:#F3F2ED;
+    --charcoal:#373737; --slate:#6F7A88; --lightblue:#C0D9E5; --border:#E2E0D8;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--off); color:var(--charcoal); font-family:var(--ar);
+    line-height:1.65; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:880px; margin:0 auto; padding:44px 24px 90px; }
+
+  /* ── رأس الصفحة ── */
+  header.hd { display:flex; align-items:center; gap:20px; padding-bottom:26px;
+    border-bottom:2px solid var(--gold); margin-bottom:14px; }
+  header.hd img { width:230px; height:auto; display:block; }
+  header.hd .t { margin-right:auto; text-align:left; }
+  header.hd .t .badge { display:inline-block; font-family:var(--lat); font-size:11px; font-weight:700;
+    letter-spacing:2px; text-transform:uppercase; color:var(--gold);
+    border:1px solid var(--gold); border-radius:999px; padding:5px 13px; }
+  .lede { font-size:15px; color:var(--slate); margin:18px 0 40px; max-width:62ch; }
+  .lede b { color:var(--navy); }
+
+  section { margin-bottom:46px; }
+  h2 { font-size:13px; color:var(--gold); letter-spacing:.16em; text-transform:uppercase;
+    font-family:var(--lat); font-weight:700; margin:0 0 18px; display:flex; align-items:center; gap:12px; }
+  h2::after { content:""; flex:1; height:1px; background:var(--border); }
+
+  .card { background:#fff; border:1px solid var(--border); border-radius:16px;
+    box-shadow:0 8px 24px rgba(11,29,59,.06); overflow:hidden; }
+  .card-pad { padding:30px; }
+
+  /* ── شريط المعاينة + زر النسخ ── */
+  .preview-bar { display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:14px 20px; background:var(--navy); color:var(--off); }
+  .preview-bar .lbl { font-size:13px; }
+  .btn { appearance:none; border:0; cursor:pointer; font-family:var(--ar); font-weight:700; font-size:13.5px;
+    background:var(--gold); color:#fff; padding:10px 20px; border-radius:8px; transition:background .15s, transform .1s; }
+  .btn:hover { background:#9a854f; }
+  .btn:active { transform:translateY(1px); }
+  .btn.done { background:#1F8A5B; }
+
+  /* ── شبكة المواصفات: خط + ألوان ── */
+  .spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:680px){ .spec-grid { grid-template-columns:1fr; } }
+  .spec-h { font-size:12px; font-family:var(--lat); letter-spacing:.12em; text-transform:uppercase;
+    color:var(--slate); margin:0 0 14px; font-weight:700; }
+
+  .type-row { padding:14px 0; border-top:1px solid var(--border); }
+  .type-row:first-of-type { border-top:0; padding-top:0; }
+  .type-name { font-size:12px; color:var(--slate); font-family:var(--lat); margin:0 0 4px; }
+  .type-ar { font-size:26px; color:var(--navy); margin:0; }
+  .type-lat { font-family:var(--lat); font-size:22px; color:var(--navy); margin:0; }
+
+  .swatch { display:flex; align-items:center; gap:13px; padding:9px 0; border-top:1px solid var(--border); }
+  .swatch:first-of-type { border-top:0; }
+  .chip { width:34px; height:34px; border-radius:8px; flex:none; border:1px solid rgba(0,0,0,.08); }
+  .swatch .nm { font-size:14px; color:var(--navy); font-weight:700; }
+  .swatch .hex { font-family:var(--lat); font-size:12.5px; color:var(--slate); direction:ltr; }
+  .swatch .use { margin-right:auto; font-size:12px; color:var(--slate); }
+
+  /* ── خريطة الشعار والحقول ── */
+  table.map { width:100%; border-collapse:collapse; font-size:14px; }
+  table.map th, table.map td { text-align:right; padding:12px 16px; border-bottom:1px solid var(--border); vertical-align:top; }
+  table.map tr:last-child td { border-bottom:0; }
+  table.map th { background:var(--off); color:var(--navy); font-weight:700; font-size:12px;
+    font-family:var(--lat); letter-spacing:.06em; text-transform:uppercase; }
+  table.map td.var { color:var(--gold); font-weight:700; white-space:nowrap; }
+  table.map td code { font-family:var(--lat); font-size:12.5px; color:var(--slate); direction:ltr;
+    background:var(--off); padding:1px 6px; border-radius:5px; }
+
+  .note { display:flex; gap:12px; background:#fff; border:1px solid var(--border);
+    border-right:4px solid var(--gold); border-radius:12px; padding:16px 18px; font-size:14px; color:var(--charcoal); }
+  .note + .note { margin-top:14px; }
+  .note b { color:var(--navy); }
+  .note code { font-family:var(--lat); font-size:12.5px; background:var(--off); padding:1px 6px; border-radius:5px; direction:ltr; }
+  .muted { color:var(--slate); font-size:13px; }
+  .readme-link { display:inline-flex; align-items:center; gap:8px; margin-top:6px;
+    color:var(--navy); font-weight:700; text-decoration:none; font-size:14px; }
+  .readme-link:hover { color:var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hd">
+    <img src="logo-wordmark.png" alt="مجموعة العطير العقارية">
+    <div class="t"><span class="badge">Official Template</span></div>
+  </header>
+  <p class="lede">
+    هذا هو <b>القالب الرسمي المعتمد</b> لتوقيع البريد الإلكتروني — ملف واحد يوضّح الخط والألوان ومكان الشعار
+    وأماكن المعلومات. عدّل القيم، انسخ التوقيع، والصقه في Gmail أو Outlook. طريقة الاستخدام الكاملة في
+    <a class="readme-link" href="README.md" target="_blank">README.md ↗</a>
+  </p>
+
+  <!-- ═══════ 1) التوقيع المعتمد (مصدر النسخ) ═══════ -->
+  <section>
+    <h2>التوقيع المعتمد</h2>
+    <div class="card">
+      <div class="preview-bar">
+        <span class="lbl">انسخ هذه الكتلة والصقها في مربع التوقيع</span>
+        <button class="btn" id="copyBtn" type="button">نسخ التوقيع</button>
+      </div>
+      <div class="card-pad" style="background:#fff;">
+
+        <!--[START SIGNATURE — انسخ من هنا]-->
+        <table role="presentation" id="sig" dir="rtl" cellpadding="0" cellspacing="0" border="0"
+               style="width:600px; max-width:600px; border-collapse:collapse; background-color:#FFFFFF;
+                      font-family:'Helvetica Neue LT Arabic',Tahoma,'Segoe UI',Arial,sans-serif; color:#373737;">
+          <tr>
+
+            <!-- ░░░░░ عمود الشعار (يمين) — الفاصل الذهبي على حدّه الأيسر ░░░░░ -->
+            <td valign="middle" align="center" style="width: 170px; vertical-align: middle; padding: 24px 10px">
+              <a href="https://www.alotair.com" style="text-decoration:none; border:0;">
+                <!-- [الشعار] استبدل src برابط عام لصورة الشعار. نسبة العرض إلى الارتفاع ~6:1 -->
+                <img src="logo-wordmark.png" width="148" height="25" alt="مجموعة العطير العقارية — Alotair Real Estate"
+                     style="display:block; border:0; outline:none; width:148px; height:auto;">
+              </a>
+            </td>
+
+            <!-- ░░░░░ عمود البيانات (يسار) — الفاصل الذهبي على حدّه الأيمن ░░░░░ -->
+            <td valign="middle" style="vertical-align:middle; padding:22px 24px 22px 22px; border-right:2px solid #AC975F;">
+
+              <!-- [الاسم] -->
+              <p style="margin:0 0 1px; font-family:'Helvetica Neue LT Arabic',Tahoma,'Segoe UI',Arial,sans-serif; font-size:19px; line-height:1.3; font-weight:bold; color:#0B1D3B;">
+                صالح بن يوسف العطير
+              </p>
+              <!-- [الاسم بالإنجليزية] -->
+              <p dir="ltr" style="margin:5px 0 7px; font-family:Roboto,Arial,'Helvetica Neue',sans-serif; font-size:12px; line-height:1.3; color:#6F7A88; letter-spacing:0.3px; text-align:right;">
+                Saleh Yousef Alotair
+              </p>
+
+              <!-- [المنصب] -->
+              <p style="margin:0 0 1px; font-family:'Helvetica Neue LT Arabic',Tahoma,'Segoe UI',Arial,sans-serif; font-size:13px; line-height:1.4; color:#AC975F; font-weight:bold; letter-spacing:0.2px;">
+                نائب الرئيس التنفيذي
+              </p>
+              <!-- [المنصب بالإنجليزية] -->
+              <p dir="ltr" style="margin:3px 0 12px; font-family:Roboto,Arial,'Helvetica Neue',sans-serif; font-size:11px; line-height:1.3; color:#AC975F; letter-spacing:0.6px; text-transform:uppercase; text-align:right;">
+                Deputy CEO
+              </p>
+
+              <!-- ░░ جدول معلومات التواصل ░░ -->
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                <!-- [رقم الجوال] -->
+                <tr><td style="padding:3px 0; font-family:'Helvetica Neue LT Arabic',Tahoma,'Segoe UI',Arial,sans-serif; font-size:13px; line-height:1.5; color:#6F7A88; white-space:nowrap;">
+                  <span style="color:#0B1D3B; font-weight:bold;">جوال:</span>
+                  <a href="tel:+966550418111" dir="ltr" style="color:#373737; text-decoration:none;">+966&nbsp;55&nbsp;041&nbsp;8111</a>
+                </td></tr>
+                <!-- [البريد الإلكتروني] -->
+                <tr><td style="padding:3px 0; font-family:'Helvetica Neue LT Arabic',Tahoma,'Segoe UI',Arial,sans-serif; font-size:13px; line-height:1.5; color:#6F7A88;">
+                  <span style="color:#0B1D3B; font-weight:bold;">البريد:</span>
+                  <a href="mailto:saleh@alotair.com" style="color:#373737; text-decoration:none;">saleh@alotair.com</a>
+                </td></tr>
+                <!-- [الموقع الإلكتروني] -->
+                <tr><td style="padding:3px 0; font-family:'Helvetica Neue LT Arabic',Tahoma,'Segoe UI',Arial,sans-serif; font-size:13px; line-height:1.5; color:#6F7A88;">
+                  <span style="color:#0B1D3B; font-weight:bold;">الموقع:</span>
+                  <a href="https://www.alotair.com" style="color:#AC975F; text-decoration:none;">www.alotair.com</a>
+                </td></tr>
+                <!-- [العنوان] -->
+                <tr><td style="padding:3px 0; font-family:'Helvetica Neue LT Arabic',Tahoma,'Segoe UI',Arial,sans-serif; font-size:13px; line-height:1.5; color:#6F7A88;">
+                  <span style="color:#0B1D3B; font-weight:bold;">العنوان:</span>
+                  <span style="color:#373737;">المملكة العربية السعودية، المدينة المنورة، طريق الملك عبدالله</span>
+                </td></tr>
+              </table>
+
+              <!-- ░░ أيقونات التواصل الاجتماعي ░░ -->
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin-top:12px;">
+                <tr><td style="padding-top:12px; border-top:1px solid #E2E0D8;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>
+                    <!-- [أيقونات التواصل] دوائر كحلية برموز بيضاء. للبريد: استبدل الـ SVG بصور PNG مستضافة. -->
+                    <td style="padding-left:8px;">
+                      <a href="https://www.linkedin.com/company/alotair" style="text-decoration:none; border:0;" aria-label="LinkedIn">
+                        <span style="display:inline-block; width:26px; height:26px; line-height:26px; border-radius:50%; background-color:#0B1D3B; text-align:center; vertical-align:middle;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZmZmZmIj48cGF0aCBkPSJNNC45OCAzLjVDNC45OCA0Ljg4IDMuODcgNiAyLjUgNlMuMDIgNC44OC4wMiAzLjUgMS4xMyAxIDIuNSAxIDQuOTggMi4xMiA0Ljk4IDMuNXpNNS4wMSA4SDBWMjRoNS4wMVY4ek04LjUgOEgxNHYyLjE4Yy43Ny0xLjI4IDIuNDctMi40NyA0Ljc1LTIuNDdDMjMuMjQgNy43MSAyNCA5LjUgMjQgMTQuMlYyNGgtNXYtOC4zYzAtMi4wNi0uNzMtMy40Ny0yLjU3LTMuNDctMS40MSAwLTIuMjQuOTUtMi42MSAxLjg2LS4xMy4zMy0uMTYuNzgtLjE2IDEuMjRWMjRoLTVWOHoiLz48L3N2Zz4=" width="13" height="13" alt="LinkedIn" style="border:0; vertical-align:middle;"></span>
+                      </a>
+                    </td>
+                    <td style="padding-left:8px;">
+                      <a href="https://www.instagram.com/alotair" style="text-decoration:none; border:0;" aria-label="Instagram">
+                        <span style="display:inline-block; width:26px; height:26px; line-height:26px; border-radius:50%; background-color:#0B1D3B; text-align:center; vertical-align:middle;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSI1Ii8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iNCIvPjxsaW5lIHgxPSIxNy41IiB5MT0iNi41IiB4Mj0iMTcuNTEiIHkyPSI2LjUiLz48L3N2Zz4=" width="13" height="13" alt="Instagram" style="border:0; vertical-align:middle;"></span>
+                      </a>
+                    </td>
+                    <td style="padding-left:8px;">
+                      <a href="https://x.com/alotair" style="text-decoration:none; border:0;" aria-label="X">
+                        <span style="display:inline-block; width:26px; height:26px; line-height:26px; border-radius:50%; background-color:#0B1D3B; text-align:center; vertical-align:middle;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZmZmZmIj48cGF0aCBkPSJNMTguMjQgMi4yNWgzLjMwOGwtNy4yMjcgOC4yNiA4LjUwMiAxMS4yNGgtNi42NTVsLTUuMjE0LTYuODE3LTUuOTY2IDYuODE3SDEuNjg4bDcuNzMtOC44MzVMMS4yNTQgMi4yNUg4LjA4bDQuNzEzIDYuMjMxem0tMS4xNiAxNy41MmgxLjgzM0w3LjA4NCA0LjEyNkg1LjExN3oiLz48L3N2Zz4=" width="12" height="12" alt="X" style="border:0; vertical-align:middle;"></span>
+                      </a>
+                    </td>
+                  </tr></table>
+                </td></tr>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+        <!--[END SIGNATURE — انسخ إلى هنا]-->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 2) الخط والألوان ═══════ -->
+  <section>
+    <h2>الخط والألوان</h2>
+    <div class="card"><div class="card-pad">
+      <div class="spec-grid">
+
+        <!-- الخط -->
+        <div>
+          <p class="spec-h">الخط</p>
+          <div class="type-row">
+            <p class="type-name">عربي — Helvetica Neue LT Arabic</p>
+            <p class="type-ar">مجموعة العطير العقارية</p>
+          </div>
+          <div class="type-row">
+            <p class="type-name">لاتيني — Roboto</p>
+            <p class="type-lat">Alotair Real Estate Group</p>
+          </div>
+          <p class="muted" style="margin:14px 0 0;">يبدأ ترتيب الخطوط بخط الهوية، ثم يتراجع إلى <b style="color:#0B1D3B;">Tahoma</b> عند المستلمين الذين لا يملكونه.</p>
+        </div>
+
+        <!-- الألوان -->
+        <div>
+          <p class="spec-h">الألوان</p>
+          <div class="swatch"><span class="chip" style="background:#0B1D3B;"></span><span class="nm">كحلي</span><span class="hex">#0B1D3B</span><span class="use">العناوين والأسماء</span></div>
+          <div class="swatch"><span class="chip" style="background:#AC975F;"></span><span class="nm">ذهبي</span><span class="hex">#AC975F</span><span class="use">المنصب والفواصل</span></div>
+          <div class="swatch"><span class="chip" style="background:#373737;"></span><span class="nm">فحمي</span><span class="hex">#373737</span><span class="use">نص المعلومات</span></div>
+          <div class="swatch"><span class="chip" style="background:#6F7A88;"></span><span class="nm">رمادي</span><span class="hex">#6F7A88</span><span class="use">نص ثانوي</span></div>
+          <div class="swatch"><span class="chip" style="background:#F3F2ED;"></span><span class="nm">عاجي</span><span class="hex">#F3F2ED</span><span class="use">الخلفيات</span></div>
+        </div>
+
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ═══════ 3) مكان الشعار وأماكن المعلومات ═══════ -->
+  <section>
+    <h2>مكان الشعار وأماكن المعلومات</h2>
+    <div class="card"><div class="card-pad" style="padding:0;">
+      <table class="map">
+        <thead><tr><th>العنصر</th><th>الموضع في التوقيع</th><th>أين تعدّله في الكود</th></tr></thead>
+        <tbody>
+          <tr><td class="var">الشعار</td><td>العمود الأيمن، يفصله خط ذهبي عمودي عن المعلومات</td><td>تعليق <code>[الشعار]</code> — خاصية <code>src</code></td></tr>
+          <tr><td class="var">الاسم</td><td>أعلى عمود المعلومات (يسار)</td><td>تعليق <code>[الاسم]</code> و <code>[الاسم بالإنجليزية]</code></td></tr>
+          <tr><td class="var">المنصب</td><td>أسفل الاسم — بالذهبي</td><td>تعليق <code>[المنصب]</code> و <code>[المنصب بالإنجليزية]</code></td></tr>
+          <tr><td class="var">الجوال</td><td>كتلة معلومات التواصل</td><td>تعليق <code>[رقم الجوال]</code> — النص و <code>tel:</code></td></tr>
+          <tr><td class="var">البريد</td><td>كتلة معلومات التواصل</td><td>تعليق <code>[البريد الإلكتروني]</code> — النص و <code>mailto:</code></td></tr>
+          <tr><td class="var">الموقع</td><td>كتلة معلومات التواصل</td><td>تعليق <code>[الموقع الإلكتروني]</code> — النص و <code>href</code></td></tr>
+          <tr><td class="var">العنوان</td><td>آخر سطر في كتلة التواصل</td><td>تعليق <code>[العنوان]</code> — النص داخل <code>span</code></td></tr>
+          <tr><td class="var">التواصل الاجتماعي</td><td>أسفل التوقيع — أيقونات دائرية يفصلها خط رفيع</td><td>تعليق <code>[أيقونات التواصل]</code> — روابط <code>href</code> الثلاثة</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </section>
+
+  <!-- ═══════ 4) ملاحظات أساسية ═══════ -->
+  <section>
+    <h2>ملاحظات أساسية</h2>
+    <div class="note"><span>🖼️</span><span><b>الشعار يحتاج رابطًا عامًّا:</b> الصورة <code>logo-wordmark.png</code> مرفقة في هذا المجلد. ارفعها على موقعك أو على Drive برابط عام، ثم ضع الرابط في <code>src</code> — لا يعرض البريد صورةً من جهازك المحلي.</span></div>
+    <div class="note"><span>✍️</span><span><b>الخط:</b> لا تُحمَّل خطوط خارجية في البريد؛ يظهر التوقيع بخط الهوية على أجهزة الشركة، ويتراجع إلى <code>Tahoma</code> عند الباقين.</span></div>
+    <div class="note"><span>✅</span><span><b>مستقل تمامًا:</b> جدول HTML بتنسيق inline بالكامل، بلا JavaScript داخل التوقيع نفسه وبلا اشتراكات — متوافق مع Gmail و Outlook، وعرضه 600px يتقلّص على الجوال.</span></div>
+  </section>
+
+</div>
+
+<script>
+  // زر النسخ — يخص صفحة القالب فقط، ولا يدخل ضمن كتلة التوقيع المنسوخة.
+  document.getElementById('copyBtn').addEventListener('click', async function () {
+    const node = document.getElementById('sig');
+    const html = node.outerHTML;
+    let ok = false;
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }) })]);
+      ok = true;
+    } catch (e) {
+      try {
+        const range = document.createRange();
+        range.selectNode(node);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ok = document.execCommand('copy');
+        sel.removeAllRanges();
+      } catch (e2) { ok = false; }
+    }
+    this.textContent = ok ? 'تم النسخ ✓' : 'حدّد التوقيع وانسخه يدويًا';
+    if (ok) this.classList.add('done');
+    setTimeout(() => { this.textContent = 'نسخ التوقيع'; this.classList.remove('done'); }, 2200);
+  });
+</script>
+</body>
+</html>
