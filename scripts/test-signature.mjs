@@ -12,6 +12,8 @@
 //    (لا data:base64 ولا روابط نسبية).
 // 2. أن العنصر #sig يحمل dir="rtl" و direction:rtl في الـ style.
 // 3. أن رقم الجوال محاط بـ <span dir="ltr"> صريح.
+// 4. أن زر "نسخ كود HTML" (#copyHtmlBtn) موجود وبفئة "secondary".
+// 5. أن عنصر ".action-hint" موجود ويفرّق بين Gmail/Outlook ووكلاء AI.
 
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -53,6 +55,22 @@ if (!sig) {
     const ltrSpan = phoneLink.querySelector('span[dir="ltr"]');
     if (!ltrSpan) failures.push('رقم الجوال غير محاط بـ <span dir="ltr">.');
   }
+}
+
+const copyHtmlBtn = document.getElementById("copyHtmlBtn");
+if (!copyHtmlBtn) {
+  failures.push('لم يتم إيجاد الزر بمعرّف "copyHtmlBtn".');
+} else if (!copyHtmlBtn.classList.contains("secondary")) {
+  failures.push('الزر "copyHtmlBtn" لا يحمل فئة "secondary".');
+}
+
+const actionHint = document.querySelector(".action-hint");
+if (!actionHint) {
+  failures.push('لم يتم إيجاد عنصر بفئة "action-hint".');
+} else {
+  const hintText = actionHint.textContent;
+  if (!hintText.includes("Gmail")) failures.push('عنصر "action-hint" لا يحتوي على كلمة "Gmail".');
+  if (!hintText.includes("وكلاء AI")) failures.push('عنصر "action-hint" لا يحتوي على كلمة "وكلاء AI".');
 }
 
 if (failures.length) {

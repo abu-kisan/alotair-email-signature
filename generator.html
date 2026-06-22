@@ -56,6 +56,7 @@
   .btn.ghost:hover { background:var(--off); }
 
   .actions { display:flex; flex-wrap:wrap; gap:10px; padding:18px 24px 6px; }
+  .action-hint { border-top:1px dashed var(--border); margin-top:6px; padding-top:14px; }
 
   .accordion { border-top:1px solid var(--border); }
   .accordion summary { cursor:pointer; padding:14px 24px; font-weight:700; color:var(--navy); font-size:14px;
@@ -125,7 +126,13 @@
       </div>
       <div class="actions">
         <button class="btn" id="copyBtn" type="button">نسخ التوقيع</button>
+        <button class="btn secondary" id="copyHtmlBtn" type="button">نسخ كود HTML</button>
         <button class="btn secondary" id="downloadBtn" type="button">تنزيل HTML</button>
+      </div>
+      <div class="action-hint" style="padding:8px 24px 18px; font-size:12px; color:var(--slate); line-height:1.6;">
+        <strong style="color:var(--navy);">نسخ التوقيع:</strong> للصق في Gmail/Outlook (محتوى منسّق).
+        <br>
+        <strong style="color:var(--navy);">نسخ كود HTML:</strong> للصق في وكلاء AI (Notion, n8n) وأدوات الأتمتة.
       </div>
 
       <details class="accordion">
@@ -330,6 +337,27 @@
       } catch (e2) { ok = false; }
     }
     showToast(ok ? "تم نسخ التوقيع ✓" : "تعذّر النسخ — حدّد التوقيع وانسخه يدويًا");
+  });
+
+  document.getElementById("copyHtmlBtn").addEventListener("click", async function () {
+    const html = getCleanedSignatureHtml();
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(html);
+      ok = true;
+    } catch (e) {
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = html;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        ok = document.execCommand("copy");
+        document.body.removeChild(textarea);
+      } catch (e2) { ok = false; }
+    }
+    showToast(ok ? "تم نسخ كود HTML ✓" : "تعذّر النسخ — جرّب طريقة أخرى");
   });
 
   document.getElementById("downloadBtn").addEventListener("click", function () {
