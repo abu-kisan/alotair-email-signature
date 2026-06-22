@@ -23,10 +23,6 @@
     letter-spacing:2px; text-transform:uppercase; color:var(--gold);
     border:1px solid var(--gold); border-radius:999px; padding:5px 13px; }
 
-  .warn-banner { display:flex; gap:12px; align-items:flex-start; background:#FFF8E7; border:1px solid var(--gold);
-    border-radius:12px; padding:14px 18px; font-size:14px; color:var(--charcoal); margin:20px 0 28px; }
-  .warn-banner b { color:var(--navy); }
-
   .grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
   @media (max-width:900px) { .grid { grid-template-columns:1fr; } }
 
@@ -84,11 +80,6 @@
     <h1>مولّد التوقيع التفاعلي — مجموعة العطير العقارية</h1>
     <span class="badge">Signature Generator</span>
   </header>
-
-  <div class="warn-banner">
-    <span>⚠️</span>
-    <span><b>تنبيه قبل الاستخدام:</b> الشعار حاليًا بمسار محلي ولن يظهر في التوقيع عند لصقه في Gmail/Outlook. سيتم استبداله برابط عام بعد نشر المشروع.</span>
-  </div>
 
   <div class="grid">
 
@@ -172,7 +163,7 @@
 (function () {
   // ⚠️ بعد النشر على Vercel، استبدل هذه القيمة بالرابط العام للشعار
   // مثال: https://your-domain.vercel.app/project/templates/email-signature/logo-wordmark.png
-  const LOGO_URL = "project/templates/email-signature/logo-wordmark.png";
+  const LOGO_URL = "https://alotair-email-signature.vercel.app/project/templates/email-signature/logo-wordmark.png";
   const STORAGE_KEY = "alotair_signature_data";
 
   const DEFAULTS = {
